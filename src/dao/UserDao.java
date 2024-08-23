@@ -82,6 +82,37 @@ public class UserDao {
         }
     }
 
+    public User findById(int id){
+        User user = null;
+        String query = "SELECT * FROM user WHERE id = " + id;
+
+        try {
+            PreparedStatement pr = this.con.prepareStatement(query);
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if(rs.next()){
+                user = this.match(rs);
+            }
+            return user;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean deleteUser(int id){
+        String query = "DELETE FROM user WHERE id = " + id;
+        User user = null;
+
+        try {
+            PreparedStatement pr = this.con.prepareStatement(query);
+            pr.setInt(1, id);
+            return pr.executeUpdate() != -1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
 
 

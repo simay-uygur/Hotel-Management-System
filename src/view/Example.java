@@ -17,9 +17,13 @@ public class Example extends JFrame {
     private JLabel lbl_password;
 
     UserController userController;
+    GUIController guiController;
 
     public Example() {
         userController =  new UserController();
+        guiController = new GUIController();
+
+        //may delete this
         for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus".equals(info.getName())) {
                 try {
@@ -46,7 +50,6 @@ public class Example extends JFrame {
         setVisible(true);
 
 
-
     }
 
     public void addListener(){
@@ -59,6 +62,8 @@ public class Example extends JFrame {
 
             if(entered != null){
                 System.out.println("you successfully entered;");
+                dispose();
+                guiController.loadAdminPage();
             }
         });
 
