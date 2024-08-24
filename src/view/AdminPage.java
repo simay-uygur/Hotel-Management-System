@@ -8,10 +8,7 @@ import entity.UserType;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class AdminPage extends JFrame {
@@ -20,10 +17,13 @@ public class AdminPage extends JFrame {
     private JComboBox cbox_usertype;
     private JButton btn_search;
     private JButton btn_adduser;
+    private JButton btn_clear;
     private JLabel lbl_username;
     private JLabel lbl_type;
     private JScrollPane scrl_user;
     private JTable tbl_user;
+    private JButton btn_exit;
+
     private JPopupMenu popup_user = new JPopupMenu();
     UserController userController = new UserController();
     private DefaultTableModel tbmdl_user = new DefaultTableModel();
@@ -44,23 +44,49 @@ public class AdminPage extends JFrame {
         this.cbox_usertype.setModel(new DefaultComboBoxModel<>(UserType.values()));
         this.cbox_usertype.setSelectedItem(null);
 
-        uploadUsers(null);
-        listAllListeners();
-        loadCustomerPopUpMenu();
+        loadUserMenu(null);
+        listAllButtonListeners();
+        loadUserPopUpMenu();
+
+        btn_exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Example example = new Example();
+                //Helper.setTheme();
+            }
+        });
 
     }
 
-    public void listAllListeners(){
+    public void listAllButtonListeners(){
         btn_adduser.addActionListener(e -> {
+            UserUI userUI = new UserUI(new User()); //adding user
+            userUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    loadUserMenu(null);
+                }
+            });
 
         });
 
         btn_search.addActionListener(e -> {
+            ArrayList<User> filteredProducts = this.userController.filterUser(
+                    this.fld_username.getText(),
+                    (UserType) this.cbox_usertype.getSelectedItem()  //hope no problem occurs
+            );
+            loadUserMenu(filteredProducts);
+        });
 
+        this.btn_clear.addActionListener(e -> {
+            this.fld_username.setText(null);
+            this.cbox_usertype.setSelectedItem(null);
+            loadUserMenu(null);
         });
     }
 
-    public void uploadUsers(ArrayList<User> users){
+    public void loadUserMenu(ArrayList<User> users){
         Object[] columnUser = { "id" ,"username", "password", "type"};
 
         if(users == null  || users.isEmpty()) {
@@ -89,7 +115,7 @@ public class AdminPage extends JFrame {
 
     }
 
-    private void loadCustomerPopUpMenu(){
+    private void loadUserPopUpMenu(){
 
         this.tbl_user.addMouseListener( new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -100,16 +126,17 @@ public class AdminPage extends JFrame {
 
         this.popup_user.add("Update").addActionListener( e -> {
             int selectId = Integer.parseInt(tbl_user.getValueAt(tbl_user.getSelectedRow(),0).toString()); //mine was (int) tbl_customer.getValueAt(tbl_customer.getSelectedRow(),0);
-            System.out.println(selectId);
+            System.out.println(selectId); //not necessary
             User editedCustomer = this.userController.findById(selectId);
-//            CustomerUI customerUI = new CustomerUI(editedCustomer);
-//            customerUI.addWindowListener(new WindowAdapter() {
-//                @Override
-//                public void windowClosed(WindowEvent e) {
-//                    loadCustomerTable(null );
-//                    loadBasketCustomerCombo();
-//                }
-//            });
+            UserUI userUI = new UserUI(editedCustomer);
+
+            userUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    loadUserMenu(null);
+                    //if there is another to add, add here
+                }
+            });
 
         });
 
@@ -119,7 +146,7 @@ public class AdminPage extends JFrame {
             {
                 if(this.userController.deleteUser(selectId)){
                     Helper.showMessage("success");
-                    uploadUsers(null);
+                    loadUserMenu(null);
                 } else{
                     Helper.showMessage("error");
                 }
@@ -130,36 +157,8 @@ public class AdminPage extends JFrame {
         this.tbl_user.setComponentPopupMenu(this.popup_user) ;
 
 
+
     }
 
-/*
-private void loadProductButtonEvent() {
-        this.btn_add_product.addActionListener(e -> {
-            ProductUI productUI = new ProductUI(new Product());
-            productUI.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    loadProductTable(null);
-                }
-            });
-        });
-
-        this.btn_search_product.addActionListener(e -> {
-            ArrayList<Product> filteredProducts = this.productController.filterProduct(
-                    this.fld_customer_name_text.getText(),
-                    this.fld_product_code.getText(),
-                    (Item)this.cmb_product_stock.getSelectedItem()
-            );
-            loadProductTable(filteredProducts);
-        });
-
-        this.btn_clear_product.addActionListener(e -> {
-             this.fld_product_code.setText(null);
-             this.fld_product_name.setText(null);
-             this.cmb_product_stock.setSelectedItem(null);
-             loadProductTable(null);
-        });
-    }
- */
 
 }

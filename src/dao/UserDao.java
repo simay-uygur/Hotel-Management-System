@@ -1,6 +1,7 @@
 package dao;
 
 import core.Database;
+import core.Helper;
 import entity.User;
 import entity.UserType;
 
@@ -66,17 +67,16 @@ public class UserDao {
         return user;
     }
 
-    public User addUser(String username, String password, String usertype){  //check logic
+    public boolean save(User user){  //check logic
         String query = "INSERT INTO user(username, password, usertype) VALUES (?,?,?)";
 
         try {
             PreparedStatement pr = this.con.prepareStatement(query);
-            pr.setString(1, username );
-            pr.setString(2,password );
-            pr.setString(3, usertype );
+            pr.setString(1, user.getUsername());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getUsertype().toString());
 
-            ResultSet rs = pr.executeQuery();
-            return findByLogin(username,password);
+            return pr.executeUpdate() != -1;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +84,7 @@ public class UserDao {
 
     public User findById(int id){
         User user = null;
-        String query = "SELECT * FROM user WHERE id = " + id;
+        String query = "SELECT * FROM user WHERE id = ?" ;
 
         try {
             PreparedStatement pr = this.con.prepareStatement(query);
@@ -111,8 +111,40 @@ public class UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
+    public boolean update(User user) {
+        String query = "UPDATE user SET " +
+                "username = ? ," +
+                "password = ? ," +
+                "usertype = ? " +
+                "WHERE id = ? " ;
+        try {
+            PreparedStatement pr = this.con.prepareStatement(query);
+            pr.setString(1, user.getUsername());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getUsertype().toString());
+            pr.setInt(4, user.getId());
+            return pr.executeUpdate() != -1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //for filter
+    public ArrayList<User> query(String query) {
+        ArrayList<User> customers = new ArrayList<>();
+        try {
+            ResultSet rs = this.con.createStatement().executeQuery(query);
+            while (rs.next()){
+                customers.add(this.match(rs));
+            }
+        } catch (SQLException e) {
+            Helper.showMessage("This could not found for filtering");
+        }
+        return customers;
+    }
+
 }
 
 

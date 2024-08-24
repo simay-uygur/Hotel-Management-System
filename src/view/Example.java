@@ -1,7 +1,9 @@
 package view;
 
 import controller.UserController;
+import core.Helper;
 import entity.User;
+import entity.UserType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,22 +25,10 @@ public class Example extends JFrame {
         userController =  new UserController();
         guiController = new GUIController();
 
-        //may delete this
-        for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                try {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                         UnsupportedLookAndFeelException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
+        Helper.setTheme();
         add(container);
 
         addListener();
-        //initializeComponents();
         setSize(400,350);
         setTitle("Patikadev");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -48,7 +38,6 @@ public class Example extends JFrame {
         int y = (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 2;
         setLocation(x, y);
         setVisible(true);
-
 
     }
 
@@ -63,7 +52,13 @@ public class Example extends JFrame {
             if(entered != null){
                 System.out.println("you successfully entered;");
                 dispose();
-                guiController.loadAdminPage();
+                if(entered.getUsertype() == UserType.admin){
+                    guiController.loadAdminPage();
+                } else {
+                    guiController.loadEmployeePage();
+                }
+            } else {
+                guiController.loadNotSuccessfullEntrancePage();
             }
         });
 

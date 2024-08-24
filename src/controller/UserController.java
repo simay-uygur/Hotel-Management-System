@@ -3,11 +3,11 @@ package controller;
 import core.Helper;
 import dao.UserDao;
 import entity.User;
+import entity.UserType;
+
 import java.util.ArrayList;
 
 public class UserController {
-
-
 
     private final UserDao userDao = new UserDao();
 
@@ -24,10 +24,6 @@ public class UserController {
         return this.userDao.findAll();
     }
 
-    public User addUser(String username, String password, String  type){  //not sure whether type should be string
-        return userDao.addUser(username, password, type);
-    }
-
     public User findById(int id){
         return this.userDao.findById(id);
     }
@@ -39,5 +35,37 @@ public class UserController {
             return false;
         }
         return this.userDao.deleteUser(id);
+    }
+
+    public boolean updateUser(User u){
+        return this.userDao.update(u);
+    }
+
+    public boolean deleteUser(User u){
+        return this.userDao.deleteUser(u.getId());
+    }
+
+    public boolean saveUser(User user){
+        return this.userDao.save(user);
+    }
+
+    public  ArrayList<User> filterUser(String username, UserType type){
+        String query = "SELECT * FROM user";
+
+        ArrayList<String> whereList = new ArrayList<>();
+
+        if(username.length() > 0){
+            whereList.add("username LIKE '%"+username+"%'");
+        }
+
+        if( type != null && type.toString().length() > 0 ){
+            whereList.add("usertype LIKE '%"+type.toString()+"%'");
+        }
+
+        if(!whereList.isEmpty()){
+            query += " WHERE " + String.join(" AND ", whereList);
+        }
+
+        return this.userDao.query(query);
     }
 }
