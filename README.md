@@ -47,13 +47,14 @@ The hotel management screen will include a list of hotels, where new hotels can 
 
 Expected Pension Types in the System:
 
-Ultra All-Inclusive
-All-Inclusive
+Ultra All Inclusive
+All Inclusive
 Bed and Breakfast
 Full Board
 Half Board
 Room Only
 Alcohol-Free Full Credit
+
 Expected Facility Features in the System:
 
 Free Parking
@@ -213,3 +214,5 @@ Agency staff will be able to list, update, and delete reservations within the sy
 - **User-Friendly Design**: The interface design should be user-friendly, and you should use your own design.
 
 ---
+### Database
+In this project <<<mySQL>>> will be used. 
