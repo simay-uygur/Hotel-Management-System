@@ -12,11 +12,7 @@ public class UserController {
     private final UserDao userDao = new UserDao();
 
 
-    public User findByLogIn(String username, String password)
-    {
-//        if(!Helper.isEmailValid(mail)) {
-//            return null;
-//        }   not necessary because i wont check whether it is a mail
+    public User findByLogIn(String username, String password) {
         return this.userDao.findByLogin(username,password);
     }
 
