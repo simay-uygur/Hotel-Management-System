@@ -64,6 +64,7 @@ Fitness Center
 Hotel Concierge
 SPA
 24/7 Room Service
+
 Sample Hotel Data:
 
 Hotel Name: Kodluyoruz Life Istanbul
