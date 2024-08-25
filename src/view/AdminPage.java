@@ -23,6 +23,7 @@ public class AdminPage extends JFrame {
     private JScrollPane scrl_user;
     private JTable tbl_user;
     private JButton btn_exit;
+    private JLabel lbl_top;
 
     private JPopupMenu popup_user = new JPopupMenu();
     UserController userController = new UserController();
