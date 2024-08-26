@@ -1,13 +1,13 @@
 package view;
 
 import controller.HotelController;
+import core.Helper;
 import entity.Hotel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class EmployeePage extends JFrame{
@@ -24,7 +24,7 @@ public class EmployeePage extends JFrame{
     private JPanel pnl_top_hotel;
     private JTable tbl_season;
     private JPanel pnl_top_season;
-    private JLabel şbş_top;
+    private JLabel lbl_top;
     private JButton btn_exit;
     private JTable tbl_price;
     private JScrollPane scrl_room;
@@ -41,12 +41,13 @@ public class EmployeePage extends JFrame{
     private JLabel lbl_hotel_name;
     private JButton btn_filter_hotel;
     private HotelController hotelController = new HotelController();
-    DefaultTableModel tbmdl_hotel = new DefaultTableModel();
+    private DefaultTableModel tbmdl_hotel = new DefaultTableModel();
+    private JPopupMenu popup_hotel = new JPopupMenu();
 
     public EmployeePage() {
         add(container);
 
-        setSize(1000,700);
+        setSize(1500,700);
         setTitle("Patikadev");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -57,7 +58,10 @@ public class EmployeePage extends JFrame{
         setVisible(true);
 
 
-        createButtonListeners();
+        //hotel processes
+        loadButtonListenersHotel();
+        loadHotels(null);
+        loadPopUpMenuHotel();
 
 
         btn_exit.addActionListener(new ActionListener() {
@@ -109,7 +113,7 @@ public class EmployeePage extends JFrame{
                     hotel.getFullAddress(),
                     hotel.getEmailAddress(),
                     hotel.getPhoneNumber(),
-                    hotel.getStars(),
+                    String.valueOf(hotel.getStars()), //bakalım
                     hotel.isHasFreeParking(),
                     hotel.isHasFreeWifi(),
                     hotel.isHasSwimmingPool(),
@@ -121,34 +125,79 @@ public class EmployeePage extends JFrame{
 
             tbmdl_hotel.addRow(row);
 
-            this.tbl_hotel.setModel(tbmdl_hotel);
-            this.tbl_hotel.getTableHeader().setReorderingAllowed(false);
-            this.tbl_hotel.getColumnModel().getColumn(0).setMaxWidth(15);
-            this.tbl_hotel.setEnabled(false);
         }
+        this.tbl_hotel.setModel(tbmdl_hotel);
+        this.tbl_hotel.getTableHeader().setReorderingAllowed(false);
+        this.tbl_hotel.getColumnModel().getColumn(0).setMaxWidth(50);
+        this.tbl_hotel.setEnabled(false);
     }
 
-    public void createButtonListeners(){
+    public void loadButtonListenersHotel(){
 
-        btn_filter_hotel.addActionListener(new ActionListener() {   //yeni bir ekran açılsın oradan tek tek özellik filtrelesen
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        //yeni bir ekran açılsın oradan tek tek özellik filtrelesen
+        btn_filter_hotel.addActionListener(e -> {
+            HotelFilter hotelFilter = new HotelFilter(this);
+            //setVisible(true);//may dispose
+        });
 
+        btn_clear_hotel.addActionListener(e -> {
+            loadHotels(null);
+            //delete filters maybe from the
+        });
+
+        btn_add_hotel.addActionListener(e -> {
+            HotelAddUpdate hotelUi = new HotelAddUpdate(new Hotel());
+            hotelUi.setVisible(true);
+            hotelUi.addWindowListener(new WindowAdapter() { //disposed
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    loadHotels(null);
+                    //needs maybe another things
+                }
+            });
+        });
+    }
+
+    public void loadPopUpMenuHotel(){
+
+        this.tbl_hotel.addMouseListener( new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                int selectedRow = tbl_hotel.rowAtPoint(e.getPoint());
+                tbl_hotel.setRowSelectionInterval(selectedRow,selectedRow); // to select the lines şn the table
             }
         });
 
-        btn_clear_hotel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        this.popup_hotel.add("Update").addActionListener( e -> {
+            int selectId = Integer.parseInt(tbl_hotel.getValueAt(tbl_hotel.getSelectedRow(),0).toString()); //mine was (int) tbl_customer.getValueAt(tbl_customer.getSelectedRow(),0);
+            System.out.println(selectId);
+            Hotel editedHotel = this.hotelController.findById(selectId);
+            HotelAddUpdate hotelUi = new HotelAddUpdate(editedHotel);
+            hotelUi.addWindowListener(new WindowAdapter() { //disposed
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    loadHotels(null);
+                    //needs maybe another things
+                }
+            });
 
-            }
         });
 
-        btn_add_hotel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+        this.popup_hotel.add("Delete").addActionListener(e ->{
+            int selectId = Integer.parseInt(tbl_hotel.getValueAt(tbl_hotel.getSelectedRow(),0).toString());
+            if(Helper.confirm("sure"))
+            {
+                if(this.hotelController.deleteHotel(selectId)){
+                    Helper.showMessage("success");
+                    loadHotels(null);
+                } else{
+                    Helper.showMessage("error");
+                }
             }
-        });
+            System.out.println("Delete clicked!");
+        } );
+
+        this.tbl_hotel.setComponentPopupMenu(this.popup_hotel) ;
     }
 }
+
+

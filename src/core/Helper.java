@@ -38,20 +38,17 @@ public class Helper {
         UIManager.put("OptionPane.noButtonText", "No");
     }
 
-    public static boolean isEmailValid(String mail){
-        // before @ and after @ . the dot after @
-        if(mail == null || mail.trim().isEmpty()) return false;
-        if(!mail.contains("@")) return false;
-        String[] emails = mail.split("@");
-        if(emails.length != 2) return false; //before@ and after@
-        if(emails[0].trim().isEmpty() || emails[1].trim().isEmpty() ) return false;
-        if(!emails[1].contains(".")) return false;
-
-        return true;
+    public static boolean isStarFieldCorrect(String text){
+        int a = 0;
+        try {
+            a = Integer.parseInt(text);
+            return a > 0 && a < 6;
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void showMessage( String message){
-
         String msg;
 
         optionPaneDialogTR();

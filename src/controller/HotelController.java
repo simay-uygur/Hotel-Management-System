@@ -58,15 +58,15 @@ public class HotelController {
         ArrayList<String> whereList = new ArrayList<>();
 
         if(!name.isEmpty()){
-            whereList.add("name ILIKE '%"+name+"%'");
+            whereList.add("name LIKE '%"+name+"%'");
         }
 
         if(!city.isEmpty()){
-            whereList.add("city ILIKE '%"+city+"%'");
+            whereList.add("city LIKE '%"+city+"%'");
         }
 
         if(!area.isEmpty()){
-            whereList.add("area ILIKE '%"+area+"%'");
+            whereList.add("area LIKE '%"+area+"%'");
         }
 
         if(stars > 0){
@@ -74,36 +74,37 @@ public class HotelController {
         }
 
         if(hasFreeParking){
-            whereList.add("hasFreeParking = true");
+            whereList.add("hasFreeParking = 1");
         }
 
         if(hasFreeWifi){
-            whereList.add("hasFreeWifi = true");
+            whereList.add("hasFreeWifi = 1");
         }
 
         if(hasSwimmingPool){
-            whereList.add("hasSwimmingPool = true");
+            whereList.add("hasSwimmingPool = 1");
         }
 
         if(hasFitnessCenter){
-            whereList.add("hasFitnessCenter = true");
+            whereList.add("hasFitnessCenter = 1");
         }
 
         if(hasHotelConcierge){
-            whereList.add("hasHotelConcierge = true");
+            whereList.add("hasHotelConcierge = 1");
         }
 
         if(hasSpa){
-            whereList.add("hasHotelConcierge = true");
+            whereList.add("hasSpa = 1");
         }
 
         if(hasRoomService){
-            whereList.add("hasHotelConcierge = true");
+            whereList.add("hasRoomService = 1");
         }
 
         if(!whereList.isEmpty()){
             query += " WHERE " + String.join(" AND ", whereList);
         }
+        System.out.println("Executing query: " + query);
 
         return this.hotelDao.query(query);
     }

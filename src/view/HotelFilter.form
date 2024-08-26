@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.HotelFilter">
+  <grid id="27dc6" binding="container" layout-manager="GridLayoutManager" row-count="24" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="581" height="807"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <vspacer id="d331d">
+        <constraints>
+          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="584a7" class="javax.swing.JLabel" binding="lbl_top">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Welcome to the filter page"/>
+        </properties>
+      </component>
+      <component id="d42ba" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hotel  name"/>
+        </properties>
+      </component>
+      <component id="bebd5" class="javax.swing.JTextField" binding="fld_hotel_name">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="9024b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hotel City"/>
+        </properties>
+      </component>
+      <component id="1ae95" class="javax.swing.JTextField" binding="fld_hotel_city">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="ff75a" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hotel area"/>
+        </properties>
+      </component>
+      <component id="e0473" class="javax.swing.JTextField" binding="fld_hotel_area">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="e6eb3" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Stars"/>
+        </properties>
+      </component>
+      <component id="16625" class="javax.swing.JTextField" binding="fld_hotel_stars">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="c5dc7" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have free parking?"/>
+        </properties>
+      </component>
+      <component id="41f1b" class="javax.swing.JRadioButton" binding="yesRadioButtonFreeParking">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="55a8b" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonFreeParking">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="50545" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have free wifi?"/>
+        </properties>
+      </component>
+      <component id="f2ba6" class="javax.swing.JRadioButton" binding="yesRadioButtonFreeWifi">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="313d7" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonFreeWifi">
+        <constraints>
+          <grid row="12" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="2d740" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have swimming pool?"/>
+        </properties>
+      </component>
+      <component id="d086c" class="javax.swing.JRadioButton" binding="yesRadioButtonSwimmingPool">
+        <constraints>
+          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="508da" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonSwimmingPool">
+        <constraints>
+          <grid row="14" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="9391b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have fitness center?"/>
+        </properties>
+      </component>
+      <component id="2c42" class="javax.swing.JRadioButton" binding="yesRadioButtonFitness">
+        <constraints>
+          <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="beacd" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonFitness">
+        <constraints>
+          <grid row="16" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="e3c" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have hotel concierge?"/>
+        </properties>
+      </component>
+      <component id="2c417" class="javax.swing.JRadioButton" binding="yesRadioButtonConcierge">
+        <constraints>
+          <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="c6ead" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonConcierge">
+        <constraints>
+          <grid row="18" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="9fe0b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have spa?"/>
+        </properties>
+      </component>
+      <component id="f5143" class="javax.swing.JRadioButton" binding="yesRadioButtonSpa">
+        <constraints>
+          <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="1660e" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonSpa">
+        <constraints>
+          <grid row="20" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="342dd" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="21" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Should hotel have 24/7 room service?"/>
+        </properties>
+      </component>
+      <component id="28d66" class="javax.swing.JRadioButton" binding="yesRadioButtonRoomService">
+        <constraints>
+          <grid row="22" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Yes"/>
+        </properties>
+      </component>
+      <component id="42db3" class="javax.swing.JRadioButton" binding="doesnTMatterRadioButtonRoomService">
+        <constraints>
+          <grid row="22" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Doesn't matter"/>
+        </properties>
+      </component>
+      <component id="a1331" class="javax.swing.JButton" binding="btn_done">
+        <constraints>
+          <grid row="23" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Done"/>
+        </properties>
+      </component>
+      <component id="27207" class="javax.swing.JButton" binding="btn_exit">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Exit"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="btngroup1">
+      <member id="41f1b"/>
+      <member id="55a8b"/>
+    </group>
+    <group name="btngroup2">
+      <member id="f2ba6"/>
+      <member id="313d7"/>
+    </group>
+    <group name="btngroup3">
+      <member id="d086c"/>
+      <member id="508da"/>
+    </group>
+    <group name="btngroup4">
+      <member id="2c42"/>
+      <member id="beacd"/>
+    </group>
+    <group name="btngroup5">
+      <member id="2c417"/>
+      <member id="c6ead"/>
+    </group>
+    <group name="btngroup6">
+      <member id="f5143"/>
+      <member id="1660e"/>
+    </group>
+    <group name="btngroup7">
+      <member id="28d66"/>
+      <member id="42db3"/>
+    </group>
+  </buttonGroups>
+</form>

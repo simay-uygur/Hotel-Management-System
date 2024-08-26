@@ -45,7 +45,7 @@ public class HotelDao {
         hotel.setArea(rs.getString("area"));
         hotel.setFullAddress(rs.getString("full_address"));
         hotel.setEmailAddress(rs.getString("email_address"));
-        hotel.setPhoneNumber(rs.getInt("phone_number"));
+        hotel.setPhoneNumber(rs.getInt("phone"));
         hotel.setId(rs.getInt("stars"));
         hotel.setHasFreeParking(rs.getBoolean("has_free_parking"));
         hotel.setHasFreeWifi(rs.getBoolean("has_free_wifi"));
@@ -60,40 +60,39 @@ public class HotelDao {
 
     public boolean save(Hotel hotel){  //check logic
         String query = "INSERT INTO hotel(" +
-                "id, " +
                 "name, " +
                 "city, " +
                 "area, " +
-                "full_address" +
-                "email_address" +
-                "phone_number" +
-                "stars" +
-                "has_free_parking" +
-                "has_free_wifi" +
-                "has_swimming_pool" +
-                "has_fitness_center" +
-                "has_hotel_concierge" +
-                "has_spa" +
+                "full_address," +
+                "email_address," +
+                "phone," +
+                "stars," +
+                "has_free_parking," +
+                "has_free_wifi," +
+                "has_swimming_pool," +
+                "has_fitness_center," +
+                "has_hotel_concierge," +
+                "has_spa," +
                 "has_room_service" +
-                ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pr = this.con.prepareStatement(query);
-            pr.setInt(1, hotel.getId());
-            pr.setString(2, hotel.getName());
-            pr.setString(3, hotel.getCity());
-            pr.setString(4, hotel.getArea());
-            pr.setString(5, hotel.getFullAddress());
-            pr.setString(6, hotel.getEmailAddress());
-            pr.setInt(7, hotel.getPhoneNumber());
-            pr.setInt(8, hotel.getStars());
-            pr.setBoolean(9, hotel.isHasFreeParking());
-            pr.setBoolean(10, hotel.isHasFreeWifi());
-            pr.setBoolean(11, hotel.isHasSwimmingPool());
-            pr.setBoolean(12, hotel.isHasFitnessCenter());
-            pr.setBoolean(13, hotel.isHasHotelConcierge());
-            pr.setBoolean(14, hotel.isHasSpa());
-            pr.setBoolean(15, hotel.isHasRoomService());
+
+            pr.setString(1, hotel.getName());
+            pr.setString(2, hotel.getCity());
+            pr.setString(3, hotel.getArea());
+            pr.setString(4, hotel.getFullAddress());
+            pr.setString(5, hotel.getEmailAddress());
+            pr.setInt(6, hotel.getPhoneNumber());
+            pr.setInt(7, hotel.getStars());
+            pr.setBoolean(8, hotel.isHasFreeParking());
+            pr.setBoolean(9, hotel.isHasFreeWifi());
+            pr.setBoolean(10, hotel.isHasSwimmingPool());
+            pr.setBoolean(11, hotel.isHasFitnessCenter());
+            pr.setBoolean(12, hotel.isHasHotelConcierge());
+            pr.setBoolean(13, hotel.isHasSpa());
+            pr.setBoolean(14, hotel.isHasRoomService());
 
             return pr.executeUpdate() != -1;
         } catch (SQLException e) {
@@ -138,7 +137,7 @@ public class HotelDao {
                 "area=?, " +
                 "full_address=?," +
                 "email_address=?," +
-                "phone_number=?," +
+                "phone=?," +
                 "stars=?," +
                 "has_free_parking=?," +
                 "has_free_wifi=?," +
