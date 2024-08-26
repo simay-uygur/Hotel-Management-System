@@ -74,36 +74,37 @@ public class HotelController {
         }
 
         if(hasFreeParking){
-            whereList.add("hasFreeParking = 1");
+            whereList.add("has_free_parking = 1");
         }
 
         if(hasFreeWifi){
-            whereList.add("hasFreeWifi = 1");
+            whereList.add("has_free_wifi = 1");
         }
 
         if(hasSwimmingPool){
-            whereList.add("hasSwimmingPool = 1");
+            whereList.add("has_swimming_pool = 1");
         }
 
         if(hasFitnessCenter){
-            whereList.add("hasFitnessCenter = 1");
+            whereList.add("has_fitness_center = 1");
         }
 
         if(hasHotelConcierge){
-            whereList.add("hasHotelConcierge = 1");
+            whereList.add("has_hotel_concierge = 1");
         }
 
         if(hasSpa){
-            whereList.add("hasSpa = 1");
+            whereList.add("has_spa = 1");
         }
 
         if(hasRoomService){
-            whereList.add("hasRoomService = 1");
+            whereList.add("has_room_service = 1");
         }
 
         if(!whereList.isEmpty()){
             query += " WHERE " + String.join(" AND ", whereList);
         }
+
         System.out.println("Executing query: " + query);
 
         return this.hotelDao.query(query);

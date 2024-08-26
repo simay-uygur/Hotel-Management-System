@@ -157,4 +157,24 @@ public class Hotel {
         this.hasRoomService = hasRoomService;
     }
 
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", fullAddress='" + fullAddress + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", stars=" + stars +
+                ", hasFreeParking=" + hasFreeParking +
+                ", hasFreeWifi=" + hasFreeWifi +
+                ", hasSwimmingPool=" + hasSwimmingPool +
+                ", hasFitnessCenter=" + hasFitnessCenter +
+                ", hasHotelConcierge=" + hasHotelConcierge +
+                ", hasSpa=" + hasSpa +
+                ", hasRoomService=" + hasRoomService +
+                '}';
+    }
 }

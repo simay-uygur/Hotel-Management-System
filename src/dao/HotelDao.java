@@ -46,7 +46,7 @@ public class HotelDao {
         hotel.setFullAddress(rs.getString("full_address"));
         hotel.setEmailAddress(rs.getString("email_address"));
         hotel.setPhoneNumber(rs.getInt("phone"));
-        hotel.setId(rs.getInt("stars"));
+        hotel.setStars(rs.getInt("stars"));
         hotel.setHasFreeParking(rs.getBoolean("has_free_parking"));
         hotel.setHasFreeWifi(rs.getBoolean("has_free_wifi"));
         hotel.setHasSwimmingPool(rs.getBoolean("has_swimming_pool"));

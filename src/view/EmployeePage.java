@@ -96,6 +96,7 @@ public class EmployeePage extends JFrame{
 
         if(hotels == null  || hotels.isEmpty()) {
             hotels = this.hotelController.findAll();
+            System.out.println(hotels);
         }
 
         DefaultTableModel model = (DefaultTableModel) tbl_hotel.getModel();
@@ -113,7 +114,7 @@ public class EmployeePage extends JFrame{
                     hotel.getFullAddress(),
                     hotel.getEmailAddress(),
                     hotel.getPhoneNumber(),
-                    String.valueOf(hotel.getStars()), //bakalım
+                    hotel.getStars(), //bakalım
                     hotel.isHasFreeParking(),
                     hotel.isHasFreeWifi(),
                     hotel.isHasSwimmingPool(),
