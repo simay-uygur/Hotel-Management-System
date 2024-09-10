@@ -1,7 +1,6 @@
 package entity;
 
 public enum Type {
-
     UltraAllInclusive,
     AllInclusive,
     BedAndBreakfast,
@@ -9,5 +8,5 @@ public enum Type {
     HalfBoard,
     RoomOnly,
     AlcoholFreeFullCredit
-
 }
+
